@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --color-brand: #0f172a;
+  --color-brand-light: #1e293b;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased text-slate-900;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3 {
+    @apply tracking-tight;
+  }
+
+  /* Inputs & selects — consistent focus ring + hover state everywhere,
+     no per-page classes needed */
+  input, select, textarea {
+    @apply transition-colors duration-150 outline-none;
+  }
+  input:focus, select:focus, textarea:focus {
+    @apply border-slate-900 ring-2 ring-slate-900/10;
+  }
+  input:disabled, select:disabled, textarea:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  /* Buttons — subtle lift + shadow on hover, consistent everywhere */
+  button {
+    @apply transition-all duration-150;
+  }
+  button:not(:disabled):hover {
+    @apply shadow-sm;
+  }
+  button:active:not(:disabled) {
+    @apply scale-[0.98];
+  }
+  button:disabled {
+    @apply cursor-not-allowed;
+  }
+
+  /* Links inside nav/tables */
+  a {
+    @apply transition-colors duration-150;
+  }
+
+  /* Tables — zebra rows + hover highlight without touching table markup */
+  table {
+    @apply w-full;
+  }
+  tbody tr:hover {
+    @apply bg-slate-50;
+  }
+
+  /* Custom scrollbar, thin + unobtrusive */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  /* Optional reusable classes — add these to any element for a quick
+     upgrade, but nothing breaks if you never use them. */
+
+  .card {
+    @apply bg-white border border-slate-200 rounded-xl shadow-sm;
+  }
+
+  .btn-primary {
+    @apply rounded-md bg-slate-900 text-white text-sm font-medium px-4 py-2 hover:bg-slate-800 disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply rounded-md border border-slate-300 text-sm font-medium px-4 py-2 hover:bg-slate-100 disabled:opacity-50;
+  }
+
+  .btn-danger {
+    @apply rounded-md bg-red-600 text-white text-sm font-medium px-4 py-2 hover:bg-red-700 disabled:opacity-50;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-green { @apply bg-green-100 text-green-700; }
+  .badge-amber { @apply bg-amber-100 text-amber-700; }
+  .badge-red { @apply bg-red-100 text-red-700; }
+  .badge-slate { @apply bg-slate-100 text-slate-700; }
+
+  /* Skeleton loading pulse — drop onto a div while data is fetching */
+  .skeleton {
+    @apply animate-pulse bg-slate-200 rounded-md;
+  }
+}
